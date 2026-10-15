@@ -17,25 +17,26 @@
 <div class="card">
 <p><strong>In short</strong></p>
 <ul>
-  <li>kirin sends your text only when you tap “Check All” on the keyboard.</li>
+  <li>kirin sends your text only when you tap “Check All” or “Check meaning in Japanese” on the keyboard.</li>
   <li>Our server does not store your text.</li>
-  <li>OpenAI checks the text. It does not use it to train its models, and keeps logs for up to 30 days to detect abuse.</li>
+  <li>OpenAI checks the text, or translates it into Japanese when you ask. It does not use it to train its models, and keeps logs for up to 30 days to detect abuse.</li>
   <li>kirin has no accounts, no ads, no analytics, and no tracking.</li>
 </ul>
 </div>
 
 <h2>What kirin sends, and when</h2>
 <ul>
-  <li>kirin sends text only when you tap “Check All” on the kirin keyboard. Showing the keyboard or typing with its keys sends nothing.</li>
+  <li>kirin sends text only when you tap “Check All” or “Check meaning in Japanese” on the kirin keyboard. Showing the keyboard or typing with its keys sends nothing.</li>
   <li>It sends the full text of the current input field, and the language of the app’s screen so explanations come back in that language. This happens in any app where you use the keyboard, not only X.</li>
+  <li>“Check meaning in Japanese” sends only the full text of the current input field.</li>
   <li>Text that contains no Latin letters is not sent. If any part has Latin letters, such as a URL, the whole text is sent.</li>
-  <li>The text goes through our own server, which runs on Cloudflare Workers, to OpenAI’s API, which checks it and suggests fixes and alternative phrasings.</li>
+  <li>The text goes through our own server, which runs on Cloudflare Workers, to OpenAI’s API, which checks it and suggests fixes and alternative phrasings, or translates it into Japanese the way a native English reader would understand it.</li>
 </ul>
 
 <h2>What our server keeps</h2>
 <ul>
   <li><strong>Your text:</strong> not stored. The server passes it to OpenAI and returns the result.</li>
-  <li><strong>Device registration:</strong> to stop abuse, each installation of the app registers with Apple’s App Attest. The server keeps a random key identifier created on your device, a public key, a counter, a one-way hash of the device token, and how many checks the installation made in the current minute and day. This record contains no name, email address, phone number, or text. It is kept while the service runs.</li>
+  <li><strong>Device registration:</strong> to stop abuse, each installation of the app registers with Apple’s App Attest. The server keeps a random key identifier created on your device, a public key, a counter, a one-way hash of the device token, and how many requests the installation made in the current minute and day. This record contains no name, email address, phone number, or text. It is kept while the service runs.</li>
   <li><strong>IP address:</strong> when the app registers a device, the server keeps a keyed one-way hash of your IP address for up to one hour, to limit how often registration can be tried. The IP address itself is not stored.</li>
   <li><strong>Logs:</strong> each request leaves a short log line with the result, error codes, the length of the text, and how long it took. Logs never contain your text, your device token, or your IP address.</li>
 </ul>
@@ -56,7 +57,7 @@
 </ul>
 
 <h2>Full Access</h2>
-<p>iOS requires “Allow Full Access” for a keyboard to use the network. kirin uses it only to check your text when you tap “Check All”. Without Full Access, you can still type with kirin, and nothing is sent.</p>
+<p>iOS requires “Allow Full Access” for a keyboard to use the network. kirin uses it only to send your text when you tap “Check All” or “Check meaning in Japanese”. Without Full Access, you can still type with kirin, and nothing is sent.</p>
 
 <h2>Your choices</h2>
 <ul>
