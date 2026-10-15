@@ -27,7 +27,7 @@
 <h2>What kirin sends, and when</h2>
 <ul>
   <li>kirin sends text only when you tap “Check All” or “Check meaning in Japanese” on the kirin keyboard. Showing the keyboard or typing with its keys sends nothing.</li>
-  <li>It sends the full text of the current input field, and the language of the app’s screen so explanations come back in that language. This happens in any app where you use the keyboard, not only X.</li>
+  <li>For “Check All”, it sends the full text of the current input field, and the language of the app’s screen so explanations come back in that language. This happens in any app where you use the keyboard, not only X.</li>
   <li>“Check meaning in Japanese” sends only the full text of the current input field.</li>
   <li>Text that contains no Latin letters is not sent. If any part has Latin letters, such as a URL, the whole text is sent.</li>
   <li>The text goes through our own server, which runs on Cloudflare Workers, to OpenAI’s API, which checks it and suggests fixes and alternative phrasings, or translates it into Japanese the way a native English reader would understand it.</li>
@@ -43,7 +43,7 @@
 
 <h2>Service providers</h2>
 <ul>
-  <li><strong>OpenAI</strong> receives the text you check. We call its API with storage turned off. OpenAI does not use text sent through its API to train its models. To detect abuse, it keeps logs that may include the text for up to 30 days, and longer only when the law requires it or to prevent harm. See <a href="https://openai.com/policies/privacy-policy/">OpenAI’s privacy policy</a>.</li>
+  <li><strong>OpenAI</strong> receives the text you check or ask to translate. We call its API with storage turned off. OpenAI does not use text sent through its API to train its models. To detect abuse, it keeps logs that may include the text for up to 30 days, and longer only when the law requires it or to prevent harm. See <a href="https://openai.com/policies/privacy-policy/">OpenAI’s privacy policy</a>.</li>
   <li><strong>Cloudflare</strong> runs our server. Like any network service, it handles your IP address and request data to deliver requests. See <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare’s privacy policy</a>.</li>
   <li><strong>Apple</strong> provides App Attest, which the app uses to prove it is a genuine copy. Your device talks to Apple for this; our server does not.</li>
 </ul>
