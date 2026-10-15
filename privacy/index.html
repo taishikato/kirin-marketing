@@ -19,7 +19,8 @@
 <ul>
   <li>kirin sends your text only when you tap “Check All” or “Check meaning in Japanese” on the keyboard.</li>
   <li>Our server does not store your text.</li>
-  <li>OpenAI checks the text, or translates it into Japanese when you ask. It does not use it to train its models, and keeps logs for up to 30 days to detect abuse.</li>
+  <li>OpenAI checks the text. It does not use it to train its models, and keeps logs for up to 30 days to detect abuse.</li>
+  <li>Google translates the text into Japanese when you ask. It does not use it to improve its products, and keeps logs for up to 55 days to detect abuse.</li>
   <li>kirin has no accounts, no ads, no analytics, and no tracking.</li>
 </ul>
 </div>
@@ -30,12 +31,12 @@
   <li>For “Check All”, it sends the full text of the current input field, and the language of the app’s screen so explanations come back in that language. This happens in any app where you use the keyboard, not only X.</li>
   <li>“Check meaning in Japanese” sends only the full text of the current input field.</li>
   <li>Text that contains no Latin letters is not sent. If any part has Latin letters, such as a URL, the whole text is sent.</li>
-  <li>The text goes through our own server, which runs on Cloudflare Workers, to OpenAI’s API, which checks it and suggests fixes and alternative phrasings, or translates it into Japanese the way a native English reader would understand it.</li>
+  <li>The text goes through our own server, which runs on Cloudflare Workers, to a language model. For “Check All”, it goes to OpenAI’s API, which checks it and suggests fixes and alternative phrasings. For “Check meaning in Japanese”, it goes to Google’s Gemini API, which translates it into Japanese the way a native English reader would understand it.</li>
 </ul>
 
 <h2>What our server keeps</h2>
 <ul>
-  <li><strong>Your text:</strong> not stored. The server passes it to OpenAI and returns the result.</li>
+  <li><strong>Your text:</strong> not stored. The server passes it to OpenAI or Google and returns the result.</li>
   <li><strong>Device registration:</strong> to stop abuse, each installation of the app registers with Apple’s App Attest. The server keeps a random key identifier created on your device, a public key, a counter, a one-way hash of the device token, and how many requests the installation made in the current minute and day. This record contains no name, email address, phone number, or text. It is kept while the service runs.</li>
   <li><strong>IP address:</strong> when the app registers a device, the server keeps a keyed one-way hash of your IP address for up to one hour, to limit how often registration can be tried. The IP address itself is not stored.</li>
   <li><strong>Logs:</strong> each request leaves a short log line with the result, error codes, the length of the text, and how long it took. Logs never contain your text, your device token, or your IP address.</li>
@@ -43,7 +44,8 @@
 
 <h2>Service providers</h2>
 <ul>
-  <li><strong>OpenAI</strong> receives the text you check or ask to translate. We call its API with storage turned off. OpenAI does not use text sent through its API to train its models. To detect abuse, it keeps logs that may include the text for up to 30 days, and longer only when the law requires it or to prevent harm. See <a href="https://openai.com/policies/privacy-policy/">OpenAI’s privacy policy</a>.</li>
+  <li><strong>OpenAI</strong> receives the text you check. We call its API with storage turned off. OpenAI does not use text sent through its API to train its models. To detect abuse, it keeps logs that may include the text for up to 30 days, and longer only when the law requires it or to prevent harm. See <a href="https://openai.com/policies/privacy-policy/">OpenAI’s privacy policy</a>.</li>
+  <li><strong>Google</strong> receives the text you ask to translate, through the paid tier of the Gemini API. Google does not use text sent on the paid tier to improve its products. It logs the text for up to 55 days, only to detect abuse and for legally required disclosures. See the <a href="https://ai.google.dev/gemini-api/terms">Gemini API terms</a> and <a href="https://policies.google.com/privacy">Google’s privacy policy</a>.</li>
   <li><strong>Cloudflare</strong> runs our server. Like any network service, it handles your IP address and request data to deliver requests. See <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare’s privacy policy</a>.</li>
   <li><strong>Apple</strong> provides App Attest, which the app uses to prove it is a genuine copy. Your device talks to Apple for this; our server does not.</li>
 </ul>
